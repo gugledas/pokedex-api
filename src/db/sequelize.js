@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt");
 
 let sequelize;
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "peroduction") {
   sequelize = new Sequelize(
     "tcqvgu87br3ns7aj",
     "apxf9axcndlaf7n6",
