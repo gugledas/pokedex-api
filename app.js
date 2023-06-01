@@ -1,12 +1,12 @@
 const express = require("express");
-//const sequelize = require("./src/db/sequelize");
+const sequelize = require("./src/db/sequelize");
 const bodyParser = require("body-parser");
 const favicon = require("serve-favicon");
 
 const app = express();
 let port = process.env.PORT || 3000;
 
-//sequelize.initDb();
+sequelize.initDb();
 
 /* Nos middlewares */
 
