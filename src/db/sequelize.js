@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === "production") {
       dialectOptions: {
         timezone: "GMT+1"
       },
-      logging: true
+      logging: false
     }
   );
 } else {
@@ -30,43 +30,41 @@ if (process.env.NODE_ENV === "production") {
     dialectOptions: {
       timezone: "GMT+1"
     },
-    logging: true
+    logging: false
   });
 }
-
-sequelize
-  .authenticate()
-  .then((_) => console.log("Connexion réussi"))
-  .catch((error) =>
-    console.log(`Erreur lors de la connection à la Bd ${error}`)
-  );
 
 let Pokemon = pokemonModel(sequelize, DataTypes);
 let User = userModel(sequelize, DataTypes);
 
 const initDb = function () {
-  return sequelize.sync({ force: true }).then((_) => {
-    console.log("BD synchronizer");
-    pokemons.map((pokem, i) => {
-      Pokemon.create({
-        name: pokem.name,
-        hp: pokem.hp,
-        cp: pokem.cp,
-        picture: pokem.picture,
-        types: pokem.types
-      }).then((p) => console.log(i + 1 + " pokemon crée"));
-    });
-    /* Init one User */
-    bcrypt
-      .hash("2023", 10)
-      .then((hash) =>
-        User.create({
-          username: "gugledas",
-          password: hash
-        })
-      )
-      .then((user) => console.log(`User ${user.username} a été créer`));
-  });
+  return sequelize
+    .sync({ force: true })
+    .then((_) => {
+      console.log("BD synchronizer");
+      pokemons.map((pokem, i) => {
+        Pokemon.create({
+          name: pokem.name,
+          hp: pokem.hp,
+          cp: pokem.cp,
+          picture: pokem.picture,
+          types: pokem.types
+        }).then((p) => console.log(i + 1 + " pokemon crée"));
+      });
+      /* Init one User */
+      bcrypt
+        .hash("2023", 10)
+        .then((hash) =>
+          User.create({
+            username: "gugledas",
+            password: hash
+          })
+        )
+        .then((user) => console.log(`User ${user.username} a été créer`));
+    })
+    .catch((error) =>
+      console.log(`Erreur lors de la connection à la Bd ${error}`)
+    );
 };
 
 module.exports = {
