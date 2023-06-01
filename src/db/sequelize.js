@@ -5,34 +5,34 @@ const userModel = require("../models/user");
 let pokemons = require("./mock-pokemon");
 const bcrypt = require("bcrypt");
 
-let sequelize;
+//let sequelize;
 
-if (process.env.NODE_ENV === "production") {
-  console.log("node env", process.env.NODE_ENV);
-  sequelize = new Sequelize(
-    "tcqvgu87br3ns7aj",
-    "apxf9axcndlaf7n6",
-    "wf1yvhdl326mnrga",
-    {
-      host: "q0h7yf5pynynaq54.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-      dialect: "mariadb",
-      dialectOptions: {
-        timezone: "GMT+1"
-      },
-      logging: false
-    }
-  );
-} else {
-  console.log("node local", process.env.NODE_ENV);
-  sequelize = new Sequelize("pokedex", "root", "stan", {
-    host: "127.0.0.1",
+//if (process.env.NODE_ENV === "production") {
+console.log("node env", process.env.NODE_ENV);
+let sequelize = new Sequelize(
+  "tcqvgu87br3ns7aj",
+  "apxf9axcndlaf7n6",
+  "wf1yvhdl326mnrga",
+  {
+    host: "q0h7yf5pynynaq54.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     dialect: "mariadb",
     dialectOptions: {
       timezone: "GMT+1"
     },
     logging: false
-  });
-}
+  }
+);
+// } else {
+//   console.log("node local", process.env.NODE_ENV);
+//   sequelize = new Sequelize("pokedex", "root", "stan", {
+//     host: "127.0.0.1",
+//     dialect: "mariadb",
+//     dialectOptions: {
+//       timezone: "GMT+1"
+//     },
+//     logging: false
+//   });
+// }
 
 let Pokemon = pokemonModel(sequelize, DataTypes);
 let User = userModel(sequelize, DataTypes);
