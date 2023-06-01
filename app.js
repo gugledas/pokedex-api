@@ -20,12 +20,12 @@ app.get("/", (req, res) => {
   res.json("Bienvenue les Négros 😄 🔥");
 });
 
-require("./src/routes/findAllPokemons")(app);
-require("./src/routes/findOnePokemon")(app);
-require("./src/routes/createPokemon")(app);
-require("./src/routes/updatePokemon")(app);
-require("./src/routes/deletePokemon")(app);
-require("./src/routes/login")(app);
+// require("./src/routes/findAllPokemons")(app);
+// require("./src/routes/findOnePokemon")(app);
+// require("./src/routes/createPokemon")(app);
+// require("./src/routes/updatePokemon")(app);
+// require("./src/routes/deletePokemon")(app);
+// require("./src/routes/login")(app);
 
 app.use(({ res }) => {
   let message = "La ressource demandé n'existe pas! Essayez une autre url";
