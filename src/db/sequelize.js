@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt");
 
 let sequelize;
 
-if (process.env.NODE_ENV === "peroduction") {
+if (process.env.NODE_ENV === "production") {
   sequelize = new Sequelize(
     "tcqvgu87br3ns7aj",
     "apxf9axcndlaf7n6",
@@ -15,15 +15,12 @@ if (process.env.NODE_ENV === "peroduction") {
     {
       host: "q0h7yf5pynynaq54.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
       dialect: "mariadb",
-      dialectOptions: {
-        timezone: "GMT+1"
-      },
       logging: false
     }
   );
 } else {
   sequelize = new Sequelize("pokedex", "root", "stan", {
-    host: "127.1.1.1",
+    host: "127.0.0.1",
     dialect: "mariadb",
     dialectOptions: {
       timezone: "GMT+1"
