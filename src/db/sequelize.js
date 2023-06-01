@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === "peroduction") {
   );
 } else {
   sequelize = new Sequelize("pokedex", "root", "stan", {
-    host: "127.0.0.1",
+    host: "127.1.1.1",
     dialect: "mariadb",
     dialectOptions: {
       timezone: "GMT+1"
